@@ -59,7 +59,3 @@ This will generate the visualization PNG files in your project directory.
 The analysis uses two main data files:
 - TFT_Champion_CurrentVersion.csv: Contains champion statistics
 - TFT_Item_CurrentVersion.csv: Contains item information
-
-## License
-
-This project is open source and available under the MIT License.

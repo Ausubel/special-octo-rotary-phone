@@ -20,10 +20,8 @@ def transform_data(champions_df):
 
 # Análisis y Visualización
 def analyze_and_visualize(champions_df):
-    # Configurar el estilo de seaborn
     sns.set_style("whitegrid")
     
-    # 1. Distribución de costos de campeones
     plt.figure(figsize=(10, 6))
     sns.countplot(data=champions_df, x='cost')
     plt.title('Distribución de Costos de Campeones')
@@ -32,7 +30,6 @@ def analyze_and_visualize(champions_df):
     plt.savefig('cost_distribution.png')
     plt.close()
     
-    # 2. Relación entre costo y DPS
     plt.figure(figsize=(10, 6))
     sns.boxplot(data=champions_df, x='cost', y='dps')
     plt.title('Relación entre Costo y DPS')
@@ -41,7 +38,6 @@ def analyze_and_visualize(champions_df):
     plt.savefig('cost_vs_dps.png')
     plt.close()
     
-    # 3. Correlación entre estadísticas
     stats_cols = ['cost', 'health', 'defense', 'attack', 'dps']
     correlation_matrix = champions_df[stats_cols].corr()
     
@@ -51,22 +47,17 @@ def analyze_and_visualize(champions_df):
     plt.savefig('correlation_matrix.png')
     plt.close()
     
-    # 4. Top 10 campeones por DPS
     print("\nTop 10 Campeones por DPS:")
     print(champions_df.nlargest(10, 'dps')[['name', 'dps', 'cost']])
     
-    # 5. Estadísticas promedio por costo
     print("\nEstadísticas promedio por costo:")
     print(champions_df.groupby('cost')[['health', 'defense', 'attack', 'dps']].mean())
 
 def main():
-    # Extract
-    champions_df, items_df = load_data()
+    (champions_df, items_df) = load_data()
     
-    # Transform
     champions_df = transform_data(champions_df)
     
-    # Analyze and Visualize
     analyze_and_visualize(champions_df)
 
 if __name__ == "__main__":
